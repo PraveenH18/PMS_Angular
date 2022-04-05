@@ -1,0 +1,94 @@
+<div class="container">
+    <h3>Admin Dashboard</h3>
+    <div class="row">
+
+        <div class="col-sm-3 col-8 mb-2">
+            <mat-card class="example-card1">
+                <mat-card-title-group>
+
+                    <mat-card-title>
+                        <mat-icon>airline_seat_individual_suite</mat-icon>&nbsp;200 Bed</mat-card-title>
+                    <mat-card-subtitle>Total hospital beds</mat-card-subtitle>
+
+                </mat-card-title-group>
+                <mat-card-content>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="col-sm-3 col-8 mb-2">
+            <mat-card class="example-card1">
+                <mat-card-title-group>
+
+                    <mat-card-title>
+                        <mat-icon>supervised_user_circle</mat-icon>&nbsp;{{providerCount}} Providers</mat-card-title>
+                    <mat-card-subtitle>
+                        <button mat-button [routerLink]="['/admin/hospitalAccountManagement']">View</button></mat-card-subtitle>
+
+                </mat-card-title-group>
+                <mat-card-content>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="col-sm-3 col-8 mb-2">
+            <mat-card class="example-card1">
+                <mat-card-title-group>
+
+                    <mat-card-title>
+                        <mat-icon>people</mat-icon>
+                        &nbsp; {{patientCount}} Patients</mat-card-title>
+                    <mat-card-subtitle>
+                        <button mat-button [routerLink]="['/admin/patientAccountManagement']">View</button>
+                    </mat-card-subtitle>
+
+                </mat-card-title-group>
+                <mat-card-content>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <div class="col-sm-3 col-8 mb-2">
+            <mat-card class="example-card1">
+                <mat-card-title-group>
+                    <mat-card-title>
+                        <mat-icon>airport_shuttle</mat-icon>&nbsp;50 Ambulance</mat-card-title>
+                    <mat-card-subtitle>All ambulance are cars</mat-card-subtitle>
+                </mat-card-title-group>
+                <mat-card-content>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- charts -->
+
+<br><br>
+<div class="row">
+
+    <div class="col-sm-6  mb-2">
+        <mat-card class="example-card-canvas-one">
+            <mat-card-title-group>
+                <mat-card-subtitle class="center">Users Statistics</mat-card-subtitle>
+            </mat-card-title-group>
+            <mat-card-content>
+                <canvas id="canvasTwo"></canvas>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="col-sm-6 mb-2">
+        <mat-card class="example-card-canvas-one">
+            <mat-card-title-group>
+            </mat-card-title-group>
+            <mat-card-content>
+                <canvas id="canvas"></canvas>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+</div>

@@ -1,0 +1,53 @@
+<mat-drawer-container autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+        <ul>
+            <li class="title bg-info">
+                <span> Hello, {{userName}}</span>
+            </li>
+            <li>
+                <div class="text-center" style="background-color: white;">
+                    <li>
+                        <div mat-card-avatar class="example-header-image pt-2 mx-auto"></div>
+                    </li>
+                </div>
+            </li>
+
+            <li>
+
+
+                <li class="navlist">
+                    <a [routerLink]="['/patient/profile']">
+                        <mat-icon class="icons ">assignment_ind</mat-icon><span class="navlist">View Profile</span>
+                    </a>
+                </li>
+                <li class="navlist">
+                    <a [routerLink]="['/patient/patienthistory']">
+                        <mat-icon class="icons ">history</mat-icon><span class="navlist">Visit History</span>
+                    </a>
+                </li>
+                <li class="navlist">
+                    <a [routerLink]="['/patient/appointment']">
+                        <mat-icon class="icons">add_circle_outline</mat-icon><span class="navlist">Create an
+                        appointment</span>
+                    </a>
+                </li>
+                <li class="navlist">
+                    <a [routerLink]="['/user/changepassword']">
+                        <mat-icon class="icons">lock</mat-icon><span class="navlist">Change
+                        Password</span>
+                    </a>
+                </li>
+        </ul>
+
+
+
+    </mat-drawer>
+    <div class="sidenav-content">
+        <div>
+            <mat-icon (click)="drawer.toggle()">toc</mat-icon>
+        </div>
+        <div class="col-12" style="overflow: auto;">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</mat-drawer-container>

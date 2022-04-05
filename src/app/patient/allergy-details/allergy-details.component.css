@@ -1,0 +1,38 @@
+.headerTitle{
+    text-align:center;
+  }
+  
+  .title{
+    text-align: center;
+    font-weight: bold;
+    height: 30px;
+    color: white;
+    padding-top: 5px;
+  
+  }
+  
+  .form-container{
+    width: 80%;
+}
+  
+  
+.full-width{
+    width: 100%;
+}
+
+.top-padding{
+    padding-top: 10px;
+}
+
+.margin-left mat-radio-button:not(:first-child){
+    margin-left:10px;
+}
+
+
+th,td{
+  padding: 10px 10px;
+}
+
+table {
+  width: 100%;
+}

@@ -1,0 +1,51 @@
+<div>
+  <h1 style="display: inline;">Received Notes</h1>
+  <span style="color: red; float: right;">Note: Messages marked with "!" and red in color are urgent.</span>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+
+
+  
+  <ng-container matColumnDef="user">
+    <th mat-header-cell *matHeaderCellDef style="text-align:left; padding-right: 50px;">User</th>
+    <td mat-cell *matCellDef="let element" > <b style="text-align:left; padding-right: 50px;">{{element.user}}</b> </td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef style="text-align:left; padding-right: 50px;">Mail Addresss</th>
+    <td mat-cell *matCellDef="let element" > <b style="text-align:left; padding-right: 50px;">{{element.emailId}}</b> </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="message" >
+    <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Message </th>
+    <td mat-cell *matCellDef="let element" style="text-align: left;" [appMessageHighlighter]=element.isUrgent> {{element.message}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="timeStamp">
+    <th mat-header-cell *matHeaderCellDef  mat-sort-header  style="text-align: right;"> Time stamp </th>
+    <td mat-cell *matCellDef="let element" style="text-align: right;padding-left: 20px;"> {{element.timeStamp}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <!-- <ng-container matColumnDef="symbol">
+    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+  </ng-container> -->
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[2]"
+showFirstLastButtons 
+aria-label="Select page of periodic elements">
+</mat-paginator>
+
+</div>
+

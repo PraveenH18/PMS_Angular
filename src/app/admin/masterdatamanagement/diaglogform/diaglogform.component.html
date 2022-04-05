@@ -1,0 +1,38 @@
+
+
+<section fxLayout="row wrap" fxLayoutAlign="center center">
+  <mat-card fxFlex="200px" fxFlex.xs="100%">
+    
+      
+<h1 mat-dialog-title>Add Diagnosis Data</h1>
+<div mat-dialog-content>
+<form [formGroup]="diagnosisForm">
+    <mat-form-field appearance="standard">
+        <mat-label>Diagnosis Code</mat-label>
+        <input matInput formControlName="diagnosisCode" >
+      </mat-form-field>
+  <br>
+      <mat-form-field appearance="standard">
+        <mat-label>Diagnosis Description</mat-label>
+        <input matInput formControlName="diagnosisDescription" >
+      </mat-form-field>
+      
+      <br/>
+    <label id="example-radio-group-label"> Is Deprecated : </label>
+    <mat-radio-group [formControl]="deprecated"
+      aria-labelledby="example-radio-group-label"
+      class="example-radio-group">
+     
+      <mat-radio-button  class="example-radio-button" *ngFor="let item of deprecatedArr" [value]="item">
+        {{item}}
+      </mat-radio-button>
+    </mat-radio-group> 
+    </form>
+    </div>
+</mat-card>
+</section>
+<div mat-dialog-actions [align]="'center'">
+    
+    <button class="mat-raised-button" mat-dialog-close>Close</button>&nbsp;&nbsp;&nbsp;
+    <button class="mat-raised-button mat-primary" (click)="addDiagnosis()" >{{actionBtn}}</button>
+</div>

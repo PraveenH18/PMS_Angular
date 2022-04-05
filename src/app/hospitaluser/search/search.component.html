@@ -1,0 +1,26 @@
+<section class="filter-wrapper">
+    <div class="keyword-wrapper">
+   
+   <form [formGroup]="userQueryForm">
+    <mat-card-content>
+        <mat-form-field class="full-width">
+            <input id="firstName" formControlName="queryField" matInput placeholder="Search by username ..." (ngModelChange)="refreshUserArray()">
+        </mat-form-field>
+        <br/>
+        <span style="color:rgba(0, 0, 255, 0.774); font: 1em sans-serif;" >Select a user from the suggestions</span>
+
+        <mat-select    formControlName="receipent" placeholder="Username" (valueChange)="emitUser($event)">
+            <mat-option select disabled value="Username">Username</mat-option>
+            <mat-option [value]="item" *ngFor="let item of users" #option>{{item.firstName}} ({{item.emailId}})
+             </mat-option>
+        </mat-select>
+    </mat-card-content>
+  
+</form>
+     </div>
+
+  
+
+</section>
+
+

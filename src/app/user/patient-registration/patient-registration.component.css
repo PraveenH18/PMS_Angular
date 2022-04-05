@@ -1,0 +1,54 @@
+form{
+    height: auto;
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: 'Times New Roman';
+    background-color: whitesmoke;
+    box-shadow: 2px 2px gray;
+    border-radius: 9px;
+}
+.header{
+    font-size: 1.5rem;
+    font-family: 'Times New Roman';
+    text-decoration: underline;
+}
+
+h2{    
+    font-weight: bold;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    text-decoration: underline;
+    text-align: center;
+}
+.card{
+    display: block;
+    width:30rem ;
+    margin: auto;
+    margin-top: 23px;
+    margin-bottom: 23px;
+}
+
+button{
+    margin: 10px;
+}
+
+p{
+    font-size: 1rem;
+    font-family: 'Times New Roman';
+    color:rgb(252, 49, 49);
+}
+
+.error{
+    font-family: 'Times New Roman';
+    color:coral;
+    text-align: center;
+    font-size: 17px;
+    font-style: italic; 
+}
+a{
+    text-decoration: none;
+}
+
+span{
+    padding: 0px;
+}

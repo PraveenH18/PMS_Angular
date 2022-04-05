@@ -1,0 +1,11 @@
+table {
+    width: 100%;
+  }
+
+  th,td{
+    padding: 10px 10px;
+}
+
+.mat-cell{
+  padding: 10px 10px;
+  }

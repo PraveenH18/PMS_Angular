@@ -1,0 +1,10 @@
+.mat-raised-button {
+    align-items: center;
+    background-color: rgba(27, 194, 194, 0.904);
+}
+
+mat-label {
+    color: black;
+    font-weight: 500;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}

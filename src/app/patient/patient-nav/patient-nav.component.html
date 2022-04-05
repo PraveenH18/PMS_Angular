@@ -1,0 +1,11 @@
+<mat-tab-group>
+  <mat-tab  label="Your details">
+    <app-patient-details (childEvent)="doesPatientHasAllergy=$event" [newAllergyToBeAdded]= "newAllergy" [allergyNotToBeAdded]= "allergyNotToBeAdded">
+    </app-patient-details>
+  </mat-tab>
+
+  <mat-tab  [disabled]= "doesPatientHasAllergy" label="Your allergy details">
+    <app-allergy-details (childEvent)= "newAllergy=$event"  (deleteAllergyChildEvent)= "allergyNotToBeAdded=$event"></app-allergy-details>
+  </mat-tab>
+
+</mat-tab-group>

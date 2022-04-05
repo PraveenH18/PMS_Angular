@@ -1,0 +1,148 @@
+<div class="mainDiv">
+    <form [formGroup]="medicationForm"  *ngIf="!isSubmitted">
+        <div class="row">
+            <div class="col-sm-6">
+                <span>DRUG ID</span>
+                <ejs-dropdownlist [dataSource]='filteredCodes' [allowFiltering]=true
+                 [popupHeight]="'240px'"
+                    [placeholder]='"Enter Drug ID"' (select)="onDrugIdSelect($event)"
+                    (filtering)="onFilteringDrugId($event)"
+                    [formControl]="drugIdControl">
+                </ejs-dropdownlist>
+                 <span class="error" *ngIf="drugIdControl.touched && drugIdControl.hasError('required')">
+                    This field cannot be empty
+                </span>
+            </div>
+            <br>
+            <div class="col-sm-6">
+                <span>DRUG NAME</span>
+                <ejs-dropdownlist [dataSource]='filteredNames' [allowFiltering]=true [popupHeight]="'240px'"
+                    [placeholder]='"Enter Drug Name"' (select)="onDrugNameSelect($event)"
+                    (filtering)="onFilteringDrugNam($event)"
+                    [formControl]="drugNameControl">
+
+                </ejs-dropdownlist>
+                 <span class="error" *ngIf="drugNameControl.touched && drugNameControl.hasError('required')">
+                    This field cannot be empty
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <span class="ml-sm-3 mr-sm-3 mt-sm-2">DRUG FORM</span>
+                <mat-form-field *ngIf="drugForms.length>1;else drugFormTextField">
+                <mat-select  (selectionChange)="getCorrespondingDrugStrength()" [formControl]="drugFormFC">
+                    <mat-option [value]="form" *ngFor="let form of drugForms">
+                        {{form}}
+                    </mat-option>
+                </mat-select>
+                <mat-error class="error" *ngIf="drugFormFC.touched && drugFormFC.hasError('required')">
+                    This field cannot be empty
+                </mat-error>
+            </mat-form-field>
+                   
+            <ng-template #drugFormTextField>
+                <mat-form-field>
+                    <input type="text" matInput [formControl]="drugFormFC">
+                    </mat-form-field>
+            </ng-template>
+            </div>
+            <div class="col-sm-6">
+                <span class="ml-sm-3 mr-sm-3 mt-sm-2">DRUG STRENGTH</span>
+                <mat-form-field *ngIf="drugStrength.length>1;else drugStrengthTextField">
+                    <mat-select  [formControl]="drugFormStrengthFC">
+                        <mat-option  [value]="strength" *ngFor="let strength of drugStrength">
+                            {{strength}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error class="error" *ngIf="drugFormStrengthFC.touched && drugFormStrengthFC.hasError('required')">
+                        This field cannot be empty
+                    </mat-error>
+                </mat-form-field>
+             
+                
+                <ng-template #drugStrengthTextField>
+                    <mat-form-field>
+                        <input type="text" matInput [formControl]="drugFormStrengthFC">
+                        </mat-form-field>
+                </ng-template>
+            </div>
+
+        </div>
+    </form>
+        <br><br>
+        <form [formGroup]="newMedicationForm">
+        <div *ngIf="showNewMedicationText">
+            <h4><u>NEW MEDICATION DETAILS</u></h4>
+            <span class="ml-3">DRUG NAME</span>
+            <mat-form-field>
+                <input class="ml-1" type="text" matInput [formControl]="newDrugNameControl">
+                <mat-error class="error" *ngIf="newDrugNameControl.touched && newDrugNameControl.hasError('required')">
+                    This field cannot be empty
+                </mat-error>
+            </mat-form-field>
+            <span class="ml-3">DRUG FORM</span>
+            <mat-form-field>
+                <input class="ml-1" type="text" matInput [formControl]="newDrugFormControl">
+                 <mat-error class="error" *ngIf="newDrugFormControl.touched && newDrugFormControl.hasError('required')">
+                    This field cannot be empty
+                </mat-error>
+            </mat-form-field>
+            <span class="ml-3">DRUG STRENGTH</span>
+            <mat-form-field>
+                <input class="ml-1" type="text" matInput [formControl]="newDrugStrengthControl">
+                <mat-error class="error" *ngIf="newDrugStrengthControl.touched && newDrugStrengthControl.hasError('required')">
+                    This field cannot be empty
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="text-center">
+            <button class="mb-3 mt-3 btn"  *ngIf="!isSubmitted" (click)="add_click()" mat-raised-button >Add</button>
+        </div>
+    </form>
+      
+    <div style="overflow-x:auto;">
+        <table class="mx-auto table">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Drug ID
+                    </th>
+                    <th scope="col">
+                        Drug Name
+                    </th>
+                    <th scope="col">
+                        Drug Form
+                    </th>
+                    <th scope="col">
+                        Drug Strength
+                    </th>
+                    <th  *ngIf="!isSubmitted">
+
+                    </th>
+                </tr>
+            </thead>
+            <tr *ngFor="let d of selectedMedication">
+                <td scope="row">{{d.drugCode}}</td>
+                <td>{{d.drugName}}</td>
+                <td>{{d.drugForm}}</td>
+                <td>{{d.drugStrength}}</td>
+                <td  *ngIf="!isSubmitted">
+                    <a href="javascript:void(0)" (click)="delete_click(d.drugCode)">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                </td>
+            </tr>
+            <tr  *ngIf="selectedMedication.length==0" class="text-danger">
+                <td colspan="4" class="text-center">
+                    No Medication Added
+                </td>
+                
+            </tr>
+        </table>
+    </div>
+    <div class="mt-4 text-center"  *ngIf="visitStatus!='closed'">
+        <button  *ngIf="!isSubmitted" class="btn" mat-raised-button (click)="submit_click()">Save</button>
+        <button *ngIf="isSubmitted"  class="btn" mat-raised-button (click)="edit_click()">Edit</button>
+    </div>
+</div>

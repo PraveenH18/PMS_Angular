@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-info">
+    <div class="navbar-brand">
+        <mat-icon class="hospital_icon">local_hospital</mat-icon>
+        <span class="title">
+            CT General Hospital
+        </span>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav ml-auto ">
+            <li class="nav-item active">
+                <a class="nav-link" (click)="openState('Home')" [ngClass]="(clickedTab==='Home')?'clicked':''" [routerLink]="['/']">
+                    <mat-icon class="nav-link icons">home</mat-icon><span class="navlist">Home</span><span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="openState('about')" [ngClass]="(clickedTab==='about')?'clicked':''" [routerLink]="['/aboutus']">
+                    <mat-icon class="nav-link icons">description</mat-icon><span class="navlist">About us</span>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="!isLoggedIn">
+                <a class="nav-link" (click)="openState('login')" [ngClass]="(clickedTab==='login')?'clicked':''" [routerLink]="['/user/login']">
+                    <mat-icon class="nav-link icons"> person_pin</mat-icon><span class="navlist">Login</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown" *ngIf="isLoggedIn">
+                <a class="nav-link" (click)="openState('dash')" [ngClass]="(clickedTab==='dash')?'clicked':''" (click)="getDashboard()">
+                    <mat-icon class="nav-link icons">dashboard</mat-icon><span class="navlist">Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="isLoggedIn">
+                <a class="nav-link" (click)="logout_click()">
+                    <mat-icon class="nav-link icons">logout</mat-icon><span class="navlist">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,68 @@
+<mat-drawer-container>
+    <mat-drawer #drawer class="sidenav" mode="side">
+        <ul>
+            <li class="title bg-info">
+                <span> Hello, {{userName}}</span>
+            </li>
+            <li>
+                <div mat-card-avatar class="example-header-image mt-3 mx-auto"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <mat-icon class="icons">manage_accounts</mat-icon><span class="navlist">User Management</span>
+                    <mat-icon (click)="showUserOptions=!showUserOptions">keyboard_arrow_down</mat-icon>
+                </a>
+                <ul *ngIf="showUserOptions">
+                    <li class="navlist">
+                        <a [routerLink]="['/admin/providerRegistration']">
+                            <mat-icon class="icons ml-2">arrow_right</mat-icon><span class="navlist">Provider Registration</span></a>
+                    </li>
+                    <li class="navlist">
+                        <a [routerLink]="['/admin/hospitalAccountManagement']">
+                            <mat-icon class="icons ml-2">arrow_right</mat-icon><span class="navlist">Hospital User Accounts</span></a>
+                    </li>
+                    <li class="navlist">
+                        <a [routerLink]="['/admin/patientAccountManagement']">
+                            <mat-icon class="icons ml-2">arrow_right</mat-icon><span class="navlist">Patient Accounts</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <mat-icon class="icons">table_chart</mat-icon><span class="navlist">Data Management</span>
+                    <mat-icon (click)="showMasterDataOptions=!showMasterDataOptions">keyboard_arrow_down</mat-icon>
+                </a>
+                <ul *ngIf="showMasterDataOptions">
+                    <li class="navlist">
+                        <a [routerLink]="['/admin/diagnosisdata']">
+                        <!-- <a href="javascript:void(0)"> -->
+                            <mat-icon class="icons ml-2">arrow_right</mat-icon><span class="navlist">Diagnosis Data</span></a>
+                    </li>
+                    <li class="navlist">
+                        <a [routerLink]="['/admin/medicationdata']">
+                        <!-- <a href="javascript:void(0)"> -->
+                            <mat-icon class="icons ml-2">arrow_right</mat-icon><span class="navlist">Medication Data</span></a>
+                    </li>
+                    <li class="navlist">
+                        <a [routerLink]="['/admin/proceduresdata']">
+                        <!-- <a href="javascript:void(0)"> -->
+                            <mat-icon class="icons ml-2">arrow_right</mat-icon><span class="navlist">Procedures Data</span></a>
+                    </li>
+                </ul>
+            </li>
+            <li  >
+                <a [routerLink]="['/user/changepassword']">
+                    <mat-icon class="icons ml-2">account_circle</mat-icon><span class="navlist">Change Password</span></a>
+            </li>
+
+        </ul>
+    </mat-drawer>
+    <div class="sidenav-content">
+        <div>
+            <mat-icon (click)="drawer.toggle()">toc</mat-icon>
+        </div>
+        <div class="col-12" style="overflow:scroll;">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</mat-drawer-container>

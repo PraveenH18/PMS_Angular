@@ -1,0 +1,22 @@
+
+
+.header {
+    font-weight: bold;
+    text-decoration: underline;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: larger;
+}
+
+  .mat-header-cell {
+    color: #000000;
+    font-weight: 600;
+  
+  }
+
+.mat-form-field {
+    font-size: 14px;
+    width: 80%;
+  }
+  .example-container .mat-form-field + .button {
+    margin-left: 5px;
+  }

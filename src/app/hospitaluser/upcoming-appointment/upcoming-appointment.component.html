@@ -1,0 +1,150 @@
+<h3 >Upcoming Schedule</h3>
+<form class="row" [formGroup]="physicianDetailForm">
+  <div class="col-sm-4 row">
+    <span class="col-sm-4 pt-3">Specialization</span>
+    <mat-form-field class="col-8">
+      <mat-select (selectionChange)="specialization_click()" matNativeControl [formControl]="specialization">
+        <mat-option *ngFor = "let item of speciality" [value]='item'>{{item|titlecase}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <span class="col-4"></span>
+    <span class="error col-8 pb-1" *ngIf="specialization.invalid && specialization.touched">
+      This field cannot be empty
+    </span>
+  </div>
+  <div class="col-sm-4 row">
+    <span class="col-sm-4">Physician Name </span>
+    <mat-form-field class="col-8 pb-0">
+      <input type="text" matInput [formControl]='physicianName' [matAutocomplete]="keys">
+      <mat-autocomplete (optionSelected)="physicianName_click()" #keys="matAutocomplete">
+        <mat-option *ngFor = "let name of physicianNameList" [value]='name'>{{ name |titlecase}}</mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <span class="col-4"></span>
+    <span class="error col-8 pb-1" *ngIf="physicianName.invalid && physicianName.touched">
+      This field cannot be empty
+    </span>
+  </div>
+  <div class="col-sm-4 row">
+    <span class="col-sm-4">Physician ID </span>
+    <mat-form-field class="col-8">
+      <input type="text" matInput [formControl]='physicianId'>
+    </mat-form-field>
+  </div>
+</form>
+<div *ngIf="this.userRole != 'physician'" class="col-sm-2 mx-auto mb-1">
+  <button mat-raised-button  class="btn" (click)="getSchedule_click()">Get Schedule</button>
+</div>
+
+<ejs-schedule #scheduleObj width="100%" height="auto" [selectedDate]="selectedDate" [eventSettings]="eventSettings"
+  (actionBegin)="onActionBegin($event)"  (eventRendered)="onEventRendered($event)" [showQuickInfo]="showQuickInfo"
+  
+  [readonly]="enableCalendar">
+  <e-views>
+    <e-view option="Day"></e-view>
+    <e-view option="Week" startHour="08:00" endHour="20:00"></e-view>
+    <e-view option="WorkWeek"></e-view>
+    <e-view option="Month"></e-view>
+  </e-views>
+  <ng-template #editorTemplate let-data>
+    <table *ngIf="data != undefined" class="custom-event-editor" width="100%" cellpadding="5">
+      <tbody>
+        <tr style="display:none" >
+          <td class="e-textlabel">Id</td>
+          <td colspan="1">
+            <input id="Id" class="e-field e-input" type="text" value="{{ data.Id }}" name="Id" style="width: 100%" />
+          </td>
+        </tr>
+        <tr>
+          <td class="e-textlabel">Title</td>
+          <td colspan="4">
+
+            <input id="Subject" [readonly]=data.Subject class="e-field e-input" type="text" value="{{ data.Subject }}"  name="Subject"
+              style="width: 100%" />
+          </td>
+        </tr>
+        <tr>
+          <td class="e-textlabel">Patient ID</td>
+          <td colspan="4">
+            <input id="PatientId" [readonly]=data.PatientId class="e-field e-input"   type="text" value="{{ data.PatientId }}" name="PatientId"
+              style="width: 100%" />
+          </td>
+        </tr>
+        <tr  *ngIf="data.CreatorName==null; else elseCreatorTemplate">
+              <td class="e-textlabel">Created By</td>
+              <td colspan="4">
+                <input
+                  id="CreatorName"
+                  class="e-field e-input"
+                  type="text"
+                  value="{{ creatorName |titlecase}}"
+                  readonly=true
+                  name="CreatorName"
+                  style="width: 100%"
+                />
+              </td>
+        </tr>
+        <ng-template #elseCreatorTemplate>
+          <td class="e-textlabel">Created By</td>
+          <td colspan="4">
+            <input
+              id="CreatorName"
+              class="e-field e-input"
+              type="text"
+              value="{{ data.CreatorName|titlecase}}"
+              readonly=true
+              name="CreatorName"
+              style="width: 100%"
+            />
+          </td>
+    </ng-template>
+        <tr *ngIf="data.Status!='PENDING' || userRole=='nurse'">
+          <td class="e-textlabel">Status</td>
+          <td colspan="4">
+            <input id="Status" class="e-field e-input" readonly=true type="text" [value]="getStatus(data.Status)"
+              name="Status" style="width: 100%" />
+          </td>
+        </tr>
+        <tr *ngIf="data.Status=='PENDING'&& userRole=='physician'">
+          <td class="e-textlabel">Status</td>
+          <td colspan="4">
+            <ejs-dropdownlist id="Status" class="e-field" data-name="Status" placeholder="Choose Status"
+              [dataSource]="statusData" value="{{ data.Status }}">
+            </ejs-dropdownlist>
+          </td>
+        </tr>
+        <tr>
+          <td class="e-textlabel">From</td>
+          <td colspan="4">
+            <ejs-datetimepicker id="StartTime" class="e-field" data-name="StartTime" format="M/dd/yy h:mm a"
+              (change)="($event)" [value]="(data.startTime || data.StartTime)">
+            </ejs-datetimepicker>
+          </td>
+        </tr>
+        <tr>
+          <td class="e-textlabel">To</td>
+          <td colspan="4">
+            <ejs-datetimepicker id="EndTime" class="e-field" data-name="EndTime" format="M/dd/yy h:mm a"
+              (change)="($event)" [value]="(data.endTime || data.EndTime)">
+            </ejs-datetimepicker>
+          </td>
+        </tr>
+        <tr>
+          <td class="e-textlabel">Description</td>
+          <td colspan="4">
+            <textarea id="Description" class="e-field e-input" name="Description" rows="3" cols="50"
+              value="{{ data.Description }}" style="width: 100%; height: 60px !important; resize: vertical"></textarea>
+          </td>
+        </tr>
+        <tr >
+          <td>Action</td>
+          <td >
+            <a *ngIf="data.PatientId" [routerLink]="['/hospitaluser/patient-details/',data.PatientId]" class="col-4" >Patient Detail</a>
+            <a *ngIf="data.IsEdited"(click)="openEditHistory(data.Id)" >Edit History</a>
+            <a *ngIf="data.Status=='ACCEPTED' && userRole!='patient'"  class="col-4" [routerLink]="['/hospitaluser/patient-visit/',data.Id]">Patient Visit Form</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-template>
+</ejs-schedule>

@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Forgot Password</h2>
+<span class="error">{{errorMessage}}</span>
+<div *ngIf="successMessage==''">
+    <br>
+    Registered Email ID
+    <br>
+    <mat-form-field>
+        <input matInput [formControl]="email">
+        <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+            Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="email.hasError('required')">
+            Please enter email address
+        </mat-error>
+    </mat-form-field>
+</div>
+<div *ngIf="successMessage!=''">
+    {{successMessage}}
+</div>
+<div mat-dialog-actions>
+    <button mat-button class='btn' (click)="submit_click()" [disabled]="email.invalid" *ngIf="showButton">Submit</button>
+    <button mat-button class='btn' (click)="onNoClick()">Close</button>
+</div>

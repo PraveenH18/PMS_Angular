@@ -1,0 +1,71 @@
+<mat-drawer-container autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+        <ul>
+            <li class="title bg-info">
+                <span> Hello, {{userName}}</span>
+            </li>
+            <li>
+
+                <div mat-card-avatar class="example-header-image mt-3 mx-auto"></div>
+            </li>
+
+
+
+            <li>
+                <a [routerLink]="['/hospitaluser/appointment']">
+                    <mat-icon class="icons">calendar_today</mat-icon><span class="navlist">Upcoming Appointment</span>
+                </a>
+            </li>
+
+            <li class="navlist">
+                <a [routerLink]="['/hospitaluser/patients']">
+                    <mat-icon class="icons">list_alt</mat-icon><span class="navlist">Patient Details</span>
+                </a>
+            </li>
+
+            <li class="navlist">
+                <a [routerLink]="['/hospitaluser/patienthistory']">
+                    <mat-icon class="icons">history</mat-icon><span class="navlist">Patient Medical History</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    <mat-icon class="icons">chat</mat-icon><span class="navlist">Notes</span>
+                    <mat-icon (click)="showNotesOptions=!showNotesOptions">keyboard_arrow_down</mat-icon>
+                </a>
+                <ul *ngIf="showNotesOptions">
+                    <li class="navlist" (click)="openSendNotesDialog()">
+                        <a href="javascript:void(0)">
+                            <mat-icon class="icons ml-2">call_made</mat-icon><span class="navlist">Send Notes</span>
+                        </a>
+                    </li>
+                    <li class="navlist" (click)="openReceivedNotesDialog()">
+                        <a href="javascript:void(0)">
+                            <mat-icon class="icons ml-2">call_received</mat-icon><span class="navlist">Received
+                                notes</span>
+                        </a>
+                    </li>
+                    <li class="navlist" (click)="openSentNotesDialog()">
+                        <a href="javascript:void(0)">
+                            <mat-icon class="icons ml-2">call_made</mat-icon><span class="navlist">Sent notes</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="navlist">
+                <a [routerLink]="['/user/changepassword']">
+                    <mat-icon class="icons">account_circle</mat-icon><span class="navlist">Change
+                        Password</span>
+                </a>
+            </li>
+        </ul>
+    </mat-drawer>
+    <div class="sidenav-content">
+        <div>
+            <mat-icon (click)="drawer.toggle()">toc</mat-icon>
+        </div>
+        <div class="col-sm-12" style="overflow:scroll;">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</mat-drawer-container>

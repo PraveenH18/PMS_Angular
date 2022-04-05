@@ -1,0 +1,17 @@
+h3{
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  a:hover{
+    border-radius: 1px;
+    background-color:rgb(175, 175, 223) ;
+  }
+
+  .clicked{
+    opacity: 0.8;
+    background-color:rgb(21, 105, 105);
+  }
+  mat-tab{
+    font-weight: bold;
+}

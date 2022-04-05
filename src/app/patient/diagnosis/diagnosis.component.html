@@ -1,0 +1,31 @@
+<div class="mainDiv pb-5 pt-3"> 
+        <table class="mx-auto table">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Diagnosis Code
+                    </th>
+                    <th scope="col">
+                        Diagnosis Description
+                    </th>
+                    <th  *ngIf="!isSubmitted">
+
+                    </th>
+                </tr>
+            </thead>
+            <tr *ngFor="let d of selectedDiagnosis">
+                <td scope="row" >{{d.diagnosisCode}}</td>
+                <td>{{d.diagnosisDescription}}</td>
+                <td *ngIf="!isSubmitted">
+                    <a href="javascript:void(0)" (click)="delete_clcik(d.diagnosisCode)">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                </td>
+            </tr>
+            <tr *ngIf="selectedDiagnosis.length==0" class="text-danger">
+                <td colspan="2" class="text-center">
+                No Diagnosis Added
+                </td>
+            </tr>
+        </table>
+    </div>

@@ -1,0 +1,112 @@
+.example-card1 {
+    height: 500px !important;
+}
+
+.header {
+    text-align: center;
+    padding: 70px 20px 80px 20px;
+}
+
+.service {
+    text-align: center;
+    padding: 70px 20px 80px 20px;
+    background: rgba(17, 219, 207, 0.8);
+}
+
+.service .icon {
+    margin: 0 auto;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: black;
+    border-radius: 50px;
+}
+
+.service .icon i {
+    font-size: 32px;
+    line-height: 1;
+    position: relative;
+    color: white;
+}
+
+.service h4 {
+    margin: 10px 0 15px 0;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.service p {
+    line-height: 24px;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.contact-box {
+    color: black;
+    text-align: center;
+    box-shadow: rgba(17, 219, 207, 0.5);
+    padding: 20px 0 30px;
+    background: #11dbcf;
+}
+
+.contact-box i {
+    font-size: 32px;
+    color: #47aeff;
+    border-radius: 50%;
+    margin: 0 auto;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: black;
+    border-radius: 50px;
+}
+
+.contact-box .icon {
+    margin: 0 auto;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: #ffff;
+    border-radius: 50px;
+}
+
+.contact-box h3 {
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.contact-box p {
+    padding: 0;
+    line-height: 24px;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.footer {
+    text-align: center;
+    font-size: 15px;
+    background-color: rgba(17, 219, 207, 0.8);
+}
+
+.footer .btn-back {
+    background: #fff;
+}
+
+.footer .text {
+    color: #000;
+}
+
+.btn-social i {
+    font-size: 22px;
+}

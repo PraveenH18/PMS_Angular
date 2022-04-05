@@ -1,0 +1,75 @@
+<div class="mainDiv pb-5 pt-3">
+
+    <form [formGroup]="procedureForm" *ngIf="!isSubmitted">
+        <span class="col-sm-3">PROCEDURE CODE</span>
+        <ejs-dropdownlist class="col-sm-4" [dataSource]='filteredCodes' [allowFiltering]=true
+            [placeholder]='"Enter the Procedure Code"' (select)="getProcedureDesc($event)"
+            (filtering)='onFilteringCode($event)' [formControl]="codeControl">
+
+        </ejs-dropdownlist>
+         <span class="error" *ngIf="codeControl.touched && codeControl.hasError('required')">
+            This field cannot be empty
+        </span>
+        <br>
+        <span class="col-sm-3">PROCEDURE DESCRIPTION</span>
+        <ejs-dropdownlist class="col-sm-12" [dataSource]='filteredDescs' [allowFiltering]=true 
+        [popupHeight]="'240px'"
+            [placeholder]='"Enter the Procedure Description"' (select)="getProcedureCode($event)"
+            (filtering)='onFilteringDesc($event)' [formControl]="descControl">
+
+        </ejs-dropdownlist>
+         <span class="error" *ngIf="descControl.touched && descControl.hasError('required')">
+            This field cannot be empty
+        </span>
+
+    </form>
+    <form [formGroup]="newProcedureForm" class="mt-3">
+        <div *ngIf="showNewProcedureText">
+            <span class="ml-sm-3">NEW PROCEDURE DESCRIPTION</span>
+            <mat-form-field class="col-sm-10">
+                <input type="text" matInput [formControl]="otherDescControl">
+                <mat-error class="error" *ngIf=" otherDescControl.touched && otherDescControl.hasError('required')">
+                    This field cannot be empty
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="mt-4 text-center">
+            <button *ngIf="!isSubmitted" mat-raised-button class="btn" (click)="add_click()">Add</button>
+        </div>
+    </form>
+    <div class="mt-4">
+        <table class="mx-auto table">
+            <thead>
+                <tr>
+                    <th  scope="col">
+                        Procedure Code
+                    </th>
+                    <th  scope="col">
+                        Procedure Description
+                    </th>
+                    <th  scope="col" *ngIf="!isSubmitted">
+
+                    </th>
+                </tr>
+            </thead>
+            <tr *ngFor="let d of selectedProcedure">
+                <td  scope="row" >{{d.procedureCode}}</td>
+                <td>{{d.procedureDescription}}</td>
+                <td *ngIf="!isSubmitted">
+                    <a href="javascript:void(0)" (click)="delete_clcik(d.procedureCode)">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                </td>
+            </tr>
+            <tr *ngIf="selectedProcedure.length==0" class="text-danger">
+                <td colspan="2" class="text-center">
+                    No Procedures Added
+                    </td>
+            </tr>
+        </table>
+    </div>
+    <div class="mt-4 text-center" *ngIf="visitStatus!='closed'">
+        <button *ngIf="!isSubmitted" mat-raised-button class="btn" (click)="submit_click()">Save</button>
+        <button *ngIf="isSubmitted"  mat-raised-button class="btn" (click)="edit_click()">Edit</button>
+    </div>
+</div>

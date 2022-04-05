@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('../node_modules/@syncfusion/ej2-schedule/styles/material.css'); 
+@import '../node_modules/@syncfusion/ej2-base/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-calendars/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-lists/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-popups/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-navigations/styles/material.css';  
+@import '../node_modules/@syncfusion/ej2-angular-schedule/styles/material.css'; 
+@import "~@angular/material/prebuilt-themes/indigo-pink.css"; 
+@import "../node_modules/ngx-toastr/toastr.css";
+
+html, body { 
+    height: 100%;
+    /* background-image: url("./assets/content_bg.jpg"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0 !important;
+    border: 0 !important;
+    margin: 0 !important;  
+ }
+body {
+     margin: 0; 
+     font-family:'Georgia', 'Times New Roman', Times, serif !important; 
+}
+
+button{
+    height: 35px;
+    border-radius: 5px;
+    text-align: center;
+}
+.btn {
+    background-color:#17a2b8 !important;
+    color: white;
+}
+
+.btn {
+    background-color:#17a2b8 !important;
+    color: white;
+}
+input{
+    border-radius: 4px;
+}
+

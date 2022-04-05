@@ -1,0 +1,49 @@
+section{
+  height: 30px !important;
+  padding: 0px;
+
+}
+a{
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+
+}
+
+
+a:hover{
+  border-radius: 1px;
+  background-color:rgb(175, 175, 223) ;
+}
+
+.clicked{
+  opacity: 0.8;
+  background-color:rgb(21, 105, 105);
+}
+
+h3{
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+li{
+   list-style-type:none;
+}
+
+.mainDiv{
+    background-color: white;
+    height: auto;
+}
+
+mat-tab{
+    font-weight: bold;
+}
+
+.error{
+  color: red;
+  font-style: italic;
+  font-size: 14px;
+}

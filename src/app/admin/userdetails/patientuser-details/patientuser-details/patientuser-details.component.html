@@ -1,0 +1,41 @@
+<h2 style="color: rgb(66, 185, 206);padding-left: 150px;">USER DETAILS</h2>
+<div style="width: 400px;background-color:whitesmoke !important;padding-left: 20px;">
+
+
+    <form>
+        <mat-tab-group>
+            <mat-tab label="Vital Details">
+                <mat-label>Title: {{userList.title}}</mat-label>
+                <br>
+                <mat-label>First Name : {{userList.firstName}}</mat-label>
+                <br>
+                <mat-label>Last Name : {{userList.firstName}} </mat-label>
+                <br>
+                <mat-label>Gender : {{userList.gender | lowercase}}</mat-label>
+                <br>
+                <mat-label>Age : {{userList.age}}</mat-label>
+                <br>
+                <mat-label>Date of Birth : {{userList.dateOfBirth}}</mat-label>
+                <br>
+                <mat-label>Email Id : {{userList.user.emailId}}</mat-label>
+                <br>
+                <mat-label>Contact Number : {{userList.contactNumber}}</mat-label>
+                <br>
+                <br> </mat-tab>
+            <mat-tab label="Account Details">
+                <mat-label>Selected Role : {{userList.user.userRole | lowercase}}</mat-label>
+                <br>
+                <mat-label>Date of Registration : {{userList.user.dataOfRegistration | lowercase}}</mat-label>
+                <br>
+                <mat-label>Patient Status : {{userList.user.status | lowercase}}</mat-label>
+                <br>
+                <mat-label>Attempts Left : {{userList.user.attempt}}</mat-label>
+                <br>
+                <br>
+            </mat-tab>
+        </mat-tab-group>
+    </form>
+
+</div>
+<br>
+<button mat-raised-button (click)="backTo()">Back</button>

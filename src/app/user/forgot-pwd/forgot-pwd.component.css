@@ -1,0 +1,20 @@
+h3,h2{
+    font-family: 'Times New Roman';
+    color: rgb(57, 204, 204);
+    text-align: center;
+}
+
+div{
+    text-align: center;
+}
+
+button{
+    margin: auto;
+}
+
+.error{
+    color: red;
+    font-style: italic;
+    font-size: 14px;
+    font-weight: normal;
+}

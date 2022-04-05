@@ -1,0 +1,43 @@
+.mainDiv{
+    border: 1px solid black;
+    padding: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    height: auto;
+}
+
+mat-label{
+    font-weight: bold;
+}
+
+mat-error{
+    font-size: 14px;
+    font-style: italic;
+
+}
+
+table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    /* width: auto !important; */
+    border-radius: 10px;
+}
+
+th,td{
+    border: 1px solid black;
+}
+thead{
+    height: 30px;
+    background-color: burlywood;
+}
+.error{
+    color: red;
+    font-style: italic;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+
+a{
+    color:black;
+}

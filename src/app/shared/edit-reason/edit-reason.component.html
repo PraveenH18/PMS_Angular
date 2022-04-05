@@ -1,0 +1,14 @@
+<div class="text-center">
+    Edit Reason
+    <mat-form-field>
+        <input [formControl]="reason" type="text" matInput>
+        <mat-error *ngIf="reason.invalid && reason.touched">
+            Please provide reason of edit
+        </mat-error>
+    </mat-form-field>
+
+
+    <div class="text-center">
+        <button mat-button class="bg-primary" (click)="submit_click()">Submit</button>
+    </div>
+</div>

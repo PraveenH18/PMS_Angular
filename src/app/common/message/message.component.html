@@ -1,0 +1,10 @@
+<section class="text-center">
+    {{data.message}}
+    <div mat-dialog-actions>
+        <button *ngIf="data.component!='changePwd';else loginButton" class="bg-primary mx-auto"
+            (click)="close_click()">Close</button>
+        <ng-template #loginButton>
+            <button class="bg-primary mx-auto" (click)="login_click()">Login</button>
+        </ng-template>
+    </div>
+</section>

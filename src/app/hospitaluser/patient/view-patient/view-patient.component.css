@@ -1,0 +1,63 @@
+.headerTitle{
+    text-align:center;
+  }
+  
+  .title{
+    text-align: center;
+    font-weight: bold;
+    height: 30px;
+    color: white;
+    padding-top: 3px;
+  
+  }
+.full-width{
+    width: 100%;
+}
+
+.top-padding{
+    padding-top: 10px;
+}
+
+.margin-left mat-radio-button:not(:first-child){
+    margin-left:8px;
+}
+
+table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-radius: 10px;
+}
+
+th,td{
+    border: 1px solid black;
+}
+thead{
+    height: 30px;
+    background-color: burlywood;
+}
+
+
+input.ng-invalid{
+    border-left: 5px, solid red;
+}
+
+#age{
+    padding-top: 8px; 
+}
+
+#gender{
+    padding-top: 20px; 
+}
+#title{
+    padding-top: 20px; 
+    padding-bottom: 10px;
+}
+.row{
+    margin-bottom: 15px;
+}
+#egEmail{
+    color:rgba(0, 162, 255, 0.589);
+}
+#emailDiv{
+    padding-top: 15px;
+}

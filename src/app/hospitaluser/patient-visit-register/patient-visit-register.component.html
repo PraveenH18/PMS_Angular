@@ -1,0 +1,44 @@
+<div class="col-sm-12 mt-2 ml-sm-2 mainDiv">
+    <div class="row">
+        <div class="col-sm-8">
+            <h3>{{pageTitle}}</h3>
+        </div>
+        <div class="col-sm-4 text-right">
+            <button *ngIf="fetchAppointment.status.toLowerCase()!='closed'" mat-raised-button class="btn"
+                (click)="closeVisit_click()">Close Visit</button>
+        </div>
+    </div>
+    <div>
+        <mat-tab-group mat-align-tabs="start" animationDuration="0ms">
+            <!-- <mat-tab label="PATIENT DETAILS">
+
+            </mat-tab> -->
+            <mat-tab label="VITAL DETAILS">
+                <app-vitalsigns (onVitalSubmit)="vitalSubmit_parent($event)" [appointment]="fetchAppointment">
+                </app-vitalsigns>
+            </mat-tab>
+            <mat-tab [disabled]="otherTabDisabled" label="DIAGNOSIS">
+                <app-diagnosis [appointment]="fetchAppointment"></app-diagnosis>
+            </mat-tab>
+            <mat-tab [disabled]="otherTabDisabled" label="PROCEDURES">
+                <app-procedure [appointment]="fetchAppointment"></app-procedure>
+            </mat-tab>
+            <mat-tab [disabled]="otherTabDisabled" label="MEDICATION">
+                <app-medication [appointment]="fetchAppointment"></app-medication>
+            </mat-tab>
+            <mat-tab [disabled]="otherTabDisabled" label="PHYSICIAN NOTES">
+                <div style="border: 1px solid black; width: auto;" class="text-center" >
+                 <h3>Additional Notes</h3>
+                <mat-form-field class="col-8">
+                    <textarea [formControl]="physicianNotes" matInput rows="10">
+                    </textarea>
+                </mat-form-field>
+                <div  class="text-center mb-2 mt-2"  *ngIf="fetchAppointment.status!='closed'">
+                    <button *ngIf="!isNotesSumitted" mat-raised-button class="btn" (click)="physicianNote_click()">Submit</button>
+                    <button *ngIf="isNotesSumitted"  mat-raised-button class="btn" (click)="physicianNoteEdit_click()">Edit</button>
+                </div>
+            </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

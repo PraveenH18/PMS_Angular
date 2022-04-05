@@ -1,0 +1,34 @@
+<div>
+    <h1 style="text-align: center;">Send Notes</h1>
+    <app-search style="float: left;" (childEvent)="receiver=$event"></app-search>
+    
+    <form class="form-container" [formGroup]="messageForm">
+        <mat-card-content>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field class="note-full-width" appearance="fill">
+                        <mat-label>Write a note</mat-label>
+                        <textarea matInput placeholder=""  formControlName="messages" style="resize:none" name="messageForm" cols="250" rows="5"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <span style="color:red; font: 1em sans-serif;">Is this message urgent?</span>
+                  
+                    <mat-radio-group formControlName="urgency" class="margin-left">
+                        <mat-radio-button value="Yes" style="margin-left: 10px; margin-right: 10px;"> Yes </mat-radio-button>
+                        <mat-radio-button value="No"> No </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+        </mat-card-content>
+        <br/>
+
+        <mat-card-actions>
+            <button (click)="sendNote()" mat-raised-button color="primary">Send</button>
+        </mat-card-actions>
+    </form>
+</div>

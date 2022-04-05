@@ -1,0 +1,45 @@
+.child {
+    display: inline-table;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+}
+
+h3 {
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.example-card1 {
+    color: white;
+    height: 120px !important;
+    background-color: #17a2b8;
+}
+
+.mat-button,
+.mat-card-subtitle {
+    color: white;
+}
+
+ngx-charts-advanced-pie-chart {
+    line-height: 2rem;
+    letter-spacing: 0.01rem;
+    display: inline-block;
+}
+
+ngx-charts-number-card {
+    display: inline-table;
+}
+
+.child {
+    height: 100px;
+}
+
+.center {
+    color: black;
+    padding-left: 150px;
+}
+
+.example-card-canvas-one {
+    height: 340px !important;
+    background-color: azure;
+}

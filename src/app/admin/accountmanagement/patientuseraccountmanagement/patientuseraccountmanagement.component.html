@@ -1,0 +1,60 @@
+<h3 class="header">Patient Accounts</h3>
+
+<mat-form-field appearance="standard">
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef>
+            PATIENT ID
+        </th>
+        <td mat-cell *matCellDef="let element"> <a [routerLink]="['/admin/patientdetails', element.userId]">{{element.userId}}</a> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>NAME
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.name|titlecase}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateOfBirth">
+        <th mat-header-cell *matHeaderCellDef>DATE OF BIRTH
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.dateOfBirth| date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="emailId">
+        <th mat-header-cell *matHeaderCellDef>
+            EMAIL ID
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.emailId}} </td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> STATUS
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+    <br>
+
+    <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>
+            <mat-icon>edit</mat-icon>
+        </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-select matNativeControl>
+                <mat-option *ngFor="let item of getStatusList(element.status)" (click)="blockChange(element.userId, item, element.emailId)">{{item}}</mat-option>
+            </mat-select>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+<mat-paginator #paginator [pageSize]="7" [pageSizeOptions]="[2, 5, 10, 25]">
+</mat-paginator>
+
+<button mat-button [routerLink]="['/admin']">Back</button>

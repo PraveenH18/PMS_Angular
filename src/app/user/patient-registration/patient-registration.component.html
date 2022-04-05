@@ -1,0 +1,135 @@
+<h2 class="text-center pt-3 title responsive-font"><u>Patient Registration</u></h2>
+<div class="col-10 col-sm-8 col-md-5 col-lg-7 mx-auto">
+
+    <span *ngIf="message" class="error">{{message}}</span>
+
+    <div class="row">
+        <form [formGroup]="registerForm">
+            <div class="pl-2">
+                <div class="form-row">
+                    <div class="my-2 col-12">
+                        <label value="title"><strong>Title: </strong></label>&nbsp;&nbsp;
+                        <input type="radio" class="ml-3" [formControl]="title" value="MR" name="title"> Mr.
+                        <input type="radio" value="MS" [formControl]="title" name="title" required> Ms.
+                        <input type="radio" value="MRS" [formControl]="title" name="title" required> Mrs.
+                        <input type="radio" value="Dr" [formControl]="title" name="title" required> Dr.<br>
+                        <span class="text-danger"
+                            *ngIf="registerForm.controls['title'].touched && title.hasError('required')">*Title is
+                            required
+                        </span>
+                    </div>
+                    <div class="row">
+
+                        <div class="form-group col-6">
+                            <label><strong>First Name</strong></label>
+                            <input type="text" [formControl]="firstName" placeholder="Ener the first name"
+                                class="form-control" />
+                            <span class="text-danger"
+                                *ngIf="registerForm.controls['firstName'].touched && firstName.hasError('required')">*First
+                                Name is required</span>
+                            <span class="text-danger" *ngIf="firstName.hasError('minlength')">*Please enter valid
+                                firstName(more than 2 char)</span>
+                        </div>
+
+                        <div class="form-group col-6">
+                            <label><strong>Last Name</strong></label>
+                            <input type="text" [formControl]="lastName" formControlName="lastName"
+                                placeholder="Ener the last name" class="form-control" />
+                            <span class="text-danger"
+                                *ngIf="registerForm.controls['lastName'].touched && lastName.hasError('required')">*Last
+                                name is required</span>
+                            <span class="text-danger" *ngIf="lastName.hasError('minlength')">*Please enter valid
+                                lastname(more than 2 char)</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="my-0 col-12">
+                    <label value="gender"><strong>Gender: </strong></label>&nbsp;&nbsp;
+                    <input type="radio" class="ml-3" [formControl]="gender" value="Male" name="gender">Male
+                    <input type="radio" value="Female" [formControl]="gender" name="gender" required> Female
+
+                    <span class="text-danger"
+                        *ngIf="registerForm.controls['gender'].touched && gender.hasError('required')">*Gender is
+                        required</span>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label><strong>Email</strong></label>
+                        <input type="email" [formControl]="email" formControlName="email"
+                            placeholder="Ener the Email address" class="form-control" />
+                        <span class="text-danger"
+                            *ngIf="registerForm.controls['email'].touched && email.hasError('required')">*Email is
+                            required</span>
+                        <span class="text-danger" *ngIf="email.hasError('email')">*Please enter valid EmailId</span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label><strong>Date of Birth</strong></label>
+                        <input type="date" [formControl]="dob" formControlName="dob"
+                            placeholder="Ener the Date of birth" class="form-control" />
+                        <span class="text-danger"
+                            *ngIf="registerForm.controls['dob'].touched && dob.hasError('required')">*Date of birth is
+                            required</span>
+
+                        <mat-error *ngIf="registerForm.controls['dob'].hasError('invalidDate')">
+                            Please enter a valid date of birth
+                        </mat-error>
+
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+
+                        <label><strong>Contact Number</strong></label>
+                        <input class="mobileNumberInput" class="col-4" type="text" value="contact"
+                            [formControl]="contact" formControlName="contact" placeholder="Ener the contact number"
+                            class="form-control" />
+
+                        <span class="text-danger"
+                            *ngIf="registerForm.controls['contact'].touched && contact.hasError('required')">*Contact
+                            Number is required</span>
+                        <span class="text-danger" *ngIf="contact.hasError('pattern')">*Please Enter valid contact
+                            number</span>
+
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label><strong>Password</strong></label>
+                        <input type="password" [formControl]="password" formControlName="password" value="password"
+                            placeholder="Ener the password" class="form-control" />
+
+                        <span class="text-danger"
+                            *ngIf="registerForm.controls['password'].touched && password.hasError('required')">
+                            *Password is required
+                        </span>
+                        <span class="text-danger" *ngIf="password.hasError('pattern')">
+                            *password should be alphanumeric and have atleast 1 uppercase,lowercase and digit.
+                        </span>
+
+                    </div>
+                    <div class="form-group col">
+                        <label><strong>Confirm Password</strong></label>
+                        <input type="password" [formControl]="confirmPassword" formControlName="confirmPassword"
+                            placeholder="Ener the confirm password" class="form-control" />
+                        <span class="text-danger"
+                            *ngIf="registerForm.controls['confirmPassword'].touched && confirmPassword.hasError('required')">
+                            *Confirm Password is required</span>
+                        <span class="text-danger"
+                            *ngIf="!confirmPassword.hasError('required') && confirmPassword.hasError('confirmPwd')">
+                            *Passwords do not match</span>
+                    </div>
+                </div>
+
+                <div class="text-center mb-4">
+                    <button class="btn btn-primary mr-1" style='margin-right:16px' (click)="onSubmit()">Submit</button>
+                    <button class="btn btn-secondary mr-3" (click)="onReset()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

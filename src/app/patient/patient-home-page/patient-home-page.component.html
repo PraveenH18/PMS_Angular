@@ -1,0 +1,71 @@
+<div class ="container-fuild">
+    <h3 >Patient Dashboard</h3>
+    <div class="row">
+        <div class="header col-11 pr-sm-3 pl-sm-2 mr-sm-3">
+          <h2><i><strong>Welcome to CT General Hospital PMS portal</strong></i></h2>
+          <p class="info">CT General Hospital is one of the best diagnostic center in the state.
+              Known for its best medicine practices with highest patient satisfaction index.
+              You can create an appointment on our own or through telephone by calling our helpline number 1800-123-1234.
+          </p>
+        </div>
+        
+    </div>
+    <div class="row mt-sm-5">
+        <div class="col-sm-6 pb-4 section1Div">
+            <h3>Upcoming Appointment</h3>
+            <div  *ngIf="appointmentList.length!=0;else noAppointmentTemp">
+            <mat-list *ngFor="let appointment of appointmentList">
+                <mat-list-item [appStatusHighLighter]="appointment.color">
+                <span class="col-10"  >
+                    {{(appointment.appointmentDate|date:'MMM d,y')+" "+(appointment.speciality|titlecase)+" "+(appointment.physicianName|titlecase)+" appointment"}}
+                </span>
+                <span class="time pl-1 pt-2">
+                    {{appointment.startTime}}
+                </span>
+            </mat-list-item>
+                <mat-divider></mat-divider>
+              </mat-list>  
+            </div>       
+        </div>
+        <ng-template #noAppointmentTemp>
+            <span style="font-style: italic;color:orange;font-size: 16px;">No Schedule Appointment at the moment.</span>
+            <br>
+            <br>
+            <span style="font-style: italic;font-size:16px;">
+                Do you want create an appointment : <a [routerLink]="['/patient/appointment']">Click Here</a>
+            </span>
+        </ng-template>
+        <div class="col-sm-5 ml-sm-3 section2Div" *ngIf="vitals!=null;">
+            <h3>Previous Visit Vitals <span class='material-icons' style="color: rgba(39, 139, 221, 0.616);">volunteer_activism</span></h3>
+            <div>
+                <div class="row mt-2">
+                    <div class="col-sm-4 offset-sm-1  subSection">
+                        <h3 class="title">Height</h3>
+                        <p >{{vitals.height+ " cm"}}</p>
+                    </div>
+                    <div class="col-sm-4 offset-sm-1 subSection">
+                        <h3 class="title">Weight</h3>
+                        <p style="padding: 0px;">{{vitals.weight+ " kg"}}</p>
+                    </div>
+                </div>
+                <div class="row  mt-2">
+                    <div class="col-sm-4 offset-sm-1  subSection">
+                        <h3 class="title">Blood Pressure</h3>
+                        <p style="padding: 0px;">{{vitals.bloodPressure+ " mm Hg"}}</p>
+                    </div>
+                    <div class="col-sm-4 offset-sm-1 subSection">
+                        <h3 class="title">Temperature</h3>
+                        <p style="padding: 0px;">{{vitals.temperature+ " F"}}</p>
+                    </div>
+                </div>
+                <div class="row  mt-2 pb-4">
+                    <div class="col-sm-4 offset-sm-1 subSection">
+                        <h3 class="title">Respiration Rate</h3>
+                        <p style="padding: 0px;">{{vitals.respirationRate+ " bpm"}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

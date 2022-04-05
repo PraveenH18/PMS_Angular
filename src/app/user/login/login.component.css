@@ -1,0 +1,42 @@
+form{
+    height: auto;
+    border: 1px solid black;
+    text-align: center;
+    font-family: 'Times New Roman';
+    background-color: whitesmoke;
+    box-shadow: 2px 2px gray;
+    border-radius: 9px;
+}
+.header{
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-family: 'Times New Roman';
+    text-decoration: underline;
+}
+
+.mat-form-field{
+    margin: auto;
+    width: 15rem;
+    display: block;
+}
+
+button{
+    margin-bottom: 0.6rem;
+}
+
+p{
+    font-size: 1rem;
+    font-family: 'Times New Roman';
+    color:rgb(252, 49, 49);
+}
+
+.error{
+    font-family: 'Times New Roman';
+    color:coral;
+    text-align: center;
+    font-size: 17px;
+    font-style: italic; 
+}
+a{
+    text-decoration: none;
+}

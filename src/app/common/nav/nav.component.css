@@ -1,0 +1,43 @@
+.icons{
+    color:whitesmoke !important;
+    margin-right: 0.9rem;
+}
+
+.navlist{
+    position: relative;
+    bottom:0.3rem;
+    color:whitesmoke;
+    font-size: 0.9rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
+}
+
+.hospital_icon{
+    font-size:2.7rem !important;
+    margin-left: 0.5rem;
+    color:whitesmoke;   
+}
+
+.title{
+    position: relative;
+    margin-left:2rem;
+    bottom: 0.8rem;
+    font-size: 1rem;
+    color:whitesmoke;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+nav{
+    padding: 0px;
+}
+
+a:hover{
+    border-radius: 3px;
+    box-shadow: 1px 1px gray;
+    background-color:rgb(175, 175, 223) ;
+}
+
+.clicked{
+    opacity: 0.8;
+    background-color:rgb(21, 105, 105);
+}

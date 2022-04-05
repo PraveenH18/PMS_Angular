@@ -1,0 +1,116 @@
+<div class="container">
+
+    <h4 class="header">PROVIDER REGISTRATION</h4>
+
+    <form [formGroup]="prvRegForm">
+
+        <div class="container border-dark">
+            <mat-label>Title: </mat-label>
+            <br>
+            <mat-radio-group formControlName="title" required>
+                <mat-radio-button value="MR">Mr.</mat-radio-button>
+                <mat-radio-button value="MS">Ms.</mat-radio-button>
+                <mat-radio-button value="MRS">Mrs.</mat-radio-button>
+                <mat-radio-button value="DR">Dr.</mat-radio-button>
+                <mat-error *ngIf="title.dirty &&title.hasError('required')">
+                    *Kindly select the title
+                </mat-error>
+            </mat-radio-group>
+        </div>
+
+        <div class="container border-dark">
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="Enter firstname" formControlName="firstName">
+                <mat-error *ngIf="firstName.hasError('required')">
+                    *First name cannot be empty
+                </mat-error>
+                <mat-error *ngIf="firstName.hasError('minlength')">
+                    *Please don't use abbreviations
+                </mat-error>
+            </mat-form-field>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Enter last" formControlName="lastName">
+                <mat-error *ngIf="lastName.hasError('required')">
+                    *Last name cannot be empty
+                </mat-error>
+                <mat-error *ngIf="lastName.hasError('minlength')">
+                    *Please don't use abbreviations
+                </mat-error>
+            </mat-form-field>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+            <mat-form-field appearance="outline">
+                <mat-label>Gender</mat-label>
+                <select matNativeControl formControlName="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="others">Others</option>
+                </select>
+            </mat-form-field>
+        </div>
+
+        <div class="container border-dark">
+            <mat-form-field appearance="outline">
+                <mat-label>Email Id</mat-label>
+                <input matInput placeholder="Enter emailid" type="emailId" formControlName="emailId">
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error *ngIf="emailId.hasError('email') && !emailId.hasError('required')">
+                    *Please enter your email address e.g. exampleusername@xyzdomain.com
+                </mat-error>
+            </mat-form-field>
+            &nbsp; &nbsp;
+
+            <mat-form-field appearance="outline">
+                <mat-label>Contact Number</mat-label>
+                <input matInput placeholder="Enter mobile number" type="text" formControlName="contactNumber">
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-error *ngIf="contactNumber.hasError('required') && !contactNumber.hasError('pattern')">
+                    *Enter a valid mobile number
+                </mat-error>
+                <mat-error *ngIf="contactNumber.hasError('pattern')">
+                    *Enter a valid mobile number
+                </mat-error>
+            </mat-form-field>
+            &nbsp; &nbsp; &nbsp;
+
+            <mat-form-field appearance="outline">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput type="date" placeholder="start date" max="1998-02-12" formControlName="dateOfBirth">
+                <mat-error *ngIf="dateOfBirth.hasError('required')">
+                    *Enter a date of birth
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="container border-dark">
+            <mat-form-field appearance="outline">
+                <mat-label>Selected Role</mat-label>
+                <select matNativeControl (ngModelChange)="disableSpl()" formControlName="role" required>
+                    <option value="physician">Physician</option>
+                    <option value="nurse">Nurse</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </mat-form-field>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+            <mat-form-field appearance="outline">
+                <mat-label>Specialization</mat-label>
+                <mat-select matNativeControl formControlName="specialization">
+                    <mat-option [value]="item" *ngFor="let item of spl">
+                        {{item}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+        <div class="centre text-center">
+            <button mat-raised-button (click)="postEmpl()">Register</button>
+        </div>
+        <br>
+    </form>
+
+</div>

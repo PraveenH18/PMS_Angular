@@ -1,0 +1,263 @@
+<div>
+    <span style="color: rgba(0, 0, 255, 0.74);"><b style="color:rgba(0, 0, 255, 0.74);">Note:</b>After adding allergies, you save these details on the previous "Your details" tab.</span>
+    <form class="form-container" [formGroup]="patientAllergyForm">
+        <mat-card>
+
+            <mat-card-header>
+                <mat-card-title>Allergy details</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="allergyDetails">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width">
+                                <input *ngIf="showAllergyIdInput" formControlName="allergyId" (mouseout)="getAllergyById()" matInput placeholder="Allergy ID">
+
+                                <mat-select *ngIf="showSelect" formControlName="allergyId">
+                                    <mat-option select disabled value="Allergy Id">Allergy Id</mat-option>
+                                    <mat-option [value]="item" *ngFor="let item of uniqueAllergyIds">{{item}}
+                                    </mat-option>
+
+
+                                </mat-select>
+
+                            </mat-form-field>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width" appearance="fill">
+                                <mat-label>Allergy type</mat-label>
+                                <mat-select formControlName="allergyType" #allergyType (selectionChange)="checkAllergyType()"
+                                    (selectionChange)="addAllergy()">
+                                    <mat-option value="Animal">Animal</mat-option>
+                                    <mat-option value="Bacteria airway">Bacteria airway</mat-option>
+                                    <mat-option value="Bacteria skin">Bacteria skin</mat-option>
+                                    <mat-option value="Contact">Contact</mat-option>
+                                    <mat-option value="Food">Food</mat-option>
+                                    <mat-option value="Fungi">Fungi</mat-option>
+                                    <mat-option value="Insect">Insect</mat-option>
+                                    <mat-option value="Mite">Mite</mat-option>
+                                    <mat-option value="Parasite">Parasite</mat-option>
+                                    <mat-option value="Plant">Plant</mat-option>
+                                    <mat-option value="Venom or Salivary">Venom or Salivary</mat-option>
+                                    <mat-option value="Others">Others</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width" appearance="fill">
+                                <mat-label>Allergy Name</mat-label>
+                                <mat-select formControlName="allergyName" (selectionChange)="getAllergyBySource()">
+                                    <mat-option select disabled value="Allergy name">Allergy name</mat-option>
+                                    <mat-option [value]="item" *ngFor="let item of uniqueAllergyNames">{{item}}
+                                    </mat-option>
+
+
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width" appearance="fill">
+                                <mat-label>Allergy description</mat-label>
+                                <mat-select formControlName="allergyDescription" (selectionChange)="getClinicalInformationBySource()">
+                                    <mat-option select disabled value="allergyDescription">Allergy description
+                                    </mat-option>
+                                    <mat-option [value]="item" *ngFor="let item of uniqueAllergySource">{{item}}
+                                    </mat-option>
+
+
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width" appearance="fill">
+                                <mat-label>Clinical information</mat-label>
+                                <mat-select formControlName="allergyClinicalInfo" (selectionChange)="getAllergyIds()">
+                                    <mat-option select disabled value="allergyClinicalInfo">Clinical information
+                                    </mat-option>
+                                    <mat-option [value]="item" *ngFor="let item of uniqueAllergyClinicInfo">{{item}}
+                                    </mat-option>
+
+
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6">
+                            <span>Is allergy fatal?</span>
+                            <br />
+                            <mat-radio-group formControlName="isAllergyFatal" class="margin-left">
+                                <mat-radio-button value="Yes"> Yes </mat-radio-button>
+                                <mat-radio-button value="No"> No </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button (click)="savePatientAllergyForm()" mat-raised-button color="primary">Add</button>
+            </mat-card-actions>
+        </mat-card>
+    </form>
+</div>
+
+<br><br>
+
+<div *ngIf="isAllergyTypeOthers">
+    <form [formGroup]="newAllergyForm" class="form-container">
+        <mat-card>
+
+            <mat-card-header>
+                <mat-card-title>Add new allergy</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <input formControlName="newAllergyId" matInput placeholder="Allergy ID">
+                            <mat-error *ngIf="newAllergyForm.controls['newAllergyId'].hasError('required')">
+                                This field cannot be empty.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <input formControlName="newAllergyType" matInput placeholder="Allergy type">
+                            <mat-error *ngIf="newAllergyForm.controls['newAllergyType'].hasError('required')">
+                                This field cannot be empty.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <input formControlName="newAllergyName" matInput placeholder="Allergy name">
+                            <mat-error *ngIf="newAllergyForm.controls['newAllergyName'].hasError('required')">
+                                This field cannot be empty.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <input formControlName="newAllergySource" matInput placeholder="Allergy source">
+                            <mat-error *ngIf="newAllergyForm.controls['newAllergySource'].hasError('required')">
+                                This field cannot be empty.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <input formControlName="isoformsOrPartialSequenceOfAllergen" matInput placeholder="Isoforms or partial sequence Of allergen">
+                            <mat-error *ngIf="newAllergyForm.controls['isoformsOrPartialSequenceOfAllergen'].hasError('required')">
+                                This field cannot be empty.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-6">
+                        <mat-form-field class="full-width">
+                            <input formControlName="allerginicity" matInput placeholder="Allergyincity">
+                            <mat-error *ngIf="newAllergyForm.controls['allerginicity'].hasError('required')">
+                                This field cannot be empty.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <span>Is allergy fatal?</span>
+                        <br />
+                        <mat-radio-group formControlName="isNewAllergyFatal" class="margin-left">
+                            <mat-radio-button value="Yes"> Yes </mat-radio-button>
+                            <mat-radio-button value="No"> No </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+
+
+            </mat-card-content>
+            <mat-card-actions>
+                <button (click)="saveNewAllergyForm()" mat-raised-button color="primary">Add</button>
+            </mat-card-actions>
+        </mat-card>
+
+    </form>
+</div>
+
+
+<div *ngIf="isPatientSelectedAllergiesEmpty" style="border-style: solid; width: fit-content;">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+
+
+
+        <ng-container matColumnDef="allergyId">
+            <th mat-header-cell *matHeaderCellDef style="text-align:left; padding-right: 50px;">Allergy ID</th>
+            <td mat-cell *matCellDef="let element"> <b style="text-align:left; padding-right: 50px;">{{element.allergyId}}</b> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="allergyType">
+            <th mat-header-cell *matHeaderCellDef style="text-align:left; padding-right: 50px;">Allergy type</th>
+            <td mat-cell *matCellDef="let element"> <b style="text-align:left; padding-right: 50px;">{{element.allergyType}}</b> </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="allergyName">
+            <th mat-header-cell *matHeaderCellDef style="text-align: center;">Allergy name </th>
+            <td mat-cell *matCellDef="let element" style="text-align: left;"> {{element.allergyName}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="isFatal">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-right: 10px; padding-left: 10px;"> Fatal </th>
+            <td mat-cell *matCellDef="let element" style="text-align: right;"> {{element.isAllergyFatal}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                <mat-icon (click)="deleteAllergy(element)">delete_sweep</mat-icon>
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[2]" showFirstLastButtons aria-label="Select page of added allergies">
+    </mat-paginator>
+
+</div>
+
+
+<!-- <br><br>
+<div *ngIf="open"  class="alert alert-warning alert-dismissible fade show" role="alert" style=" width: max-content;position:fixed; top:250px; left: 400px;">
+    <strong style="margin: right 5px;">Allergy has been added. You can more allergies or save the details on 'Your Details' tab.</strong> 
+    
+    <button type="button"  (click)="remove()" style="border: 0ch;  position:absolute;top:0;right:0; background-color: #fff3cd;"  >x</button>
+  </div> -->

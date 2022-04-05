@@ -1,0 +1,43 @@
+<div class="mainDiv">
+    
+    <div style="overflow-x:auto;">
+        <table class="mx-auto table">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Drug ID
+                    </th>
+                    <th scope="col">
+                        Drug Name
+                    </th>
+                    <th scope="col">
+                        Drug Form
+                    </th>
+                    <th scope="col">
+                        Drug Strength
+                    </th>
+                    <th  *ngIf="!isSubmitted">
+
+                    </th>
+                </tr>
+            </thead>
+            <tr *ngFor="let d of selectedMedication">
+                <td scope="row">{{d.drugCode}}</td>
+                <td>{{d.drugName}}</td>
+                <td>{{d.drugForm}}</td>
+                <td>{{d.drugStrength}}</td>
+                <td  *ngIf="!isSubmitted">
+                    <a href="javascript:void(0)" (click)="delete_click(d.drugCode)">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                </td>
+            </tr>
+            <tr  *ngIf="selectedMedication.length==0" class="text-danger">
+                <td colspan="4" class="text-center">
+                        No Medication Added
+                    </td>
+                
+            </tr>
+        </table>
+    </div>
+</div>

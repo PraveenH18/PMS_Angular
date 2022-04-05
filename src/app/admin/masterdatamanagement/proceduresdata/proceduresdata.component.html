@@ -1,0 +1,71 @@
+<h1 class="header">Procedure Data</h1>
+<div class=" example-container   ">
+  <mat-form-field appearance="standard"  class="col-11">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)"  #input>
+    
+  </mat-form-field>&nbsp;&nbsp;
+  
+      <button mat-raised-button class="btn" (click)="openDialog()">Add</button>
+  
+  
+  <br/>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 col-11" >
+    <th mat-header-cell *matHeaderCellDef> 
+
+      <input (keyup)="applyFilter($event)" placeholder="Search" #input>
+
+      <tr class="mat-row" *matNoDataRow>
+
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+
+    </tr>
+
+    </th>
+
+    <ng-container matColumnDef="procedureCode">
+      <th mat-header-cell *matHeaderCellDef> <strong>Procedure Code</strong> </th>
+      <td mat-cell *matCellDef="let element"> {{element.procedureCode}} </td>
+      <input (keyup)="applyFilter($event)" placeholder="Search" #input>
+      <tr class="mat-row" *matNoDataRow>
+
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+
+    </tr>
+    </ng-container>
+
+    <ng-container matColumnDef="procedureDescription">
+      <th mat-header-cell *matHeaderCellDef> <strong>Procedure Name</strong> </th>
+      <td mat-cell *matCellDef="let element"> {{element.procedureDescription}} </td>
+      
+    </ng-container>
+
+    <ng-container matColumnDef="isDeprecated">
+      <th mat-header-cell *matHeaderCellDef> <strong>IS DEPRECATED</strong> </th>
+      <td mat-cell *matCellDef="let element"> {{element.deprecated|boolean}} </td>
+     
+    </ng-container>
+
+   <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            <strong>ACTION</strong>      
+          </th>
+  
+        
+          <td mat-cell *matCellDef="let row">
+        <button mat-icon-button (click)="editProcedure(row)"><mat-icon>mode_edit</mat-icon>
+        </button>
+      </td>
+  </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+  </table>
+  <br>
+  <div class="col-11">
+  <mat-paginator #paginator [pageSize]="7" [pageSizeOptions]="[2,7, 14, 21, 28]">
+  </mat-paginator>
+  </div>
+
+

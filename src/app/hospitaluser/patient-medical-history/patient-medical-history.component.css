@@ -1,0 +1,39 @@
+
+table {
+    width: 100%;
+    border: 1px solid rgba(27, 194, 194, 0.904);
+  }
+  
+th {
+  font-weight: 600;
+}
+a {
+  color: rgb(48, 37, 145);
+
+}
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  .demo-table {
+    width: 100%;
+  }
+  
+  .mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+  }
+  
+  .mat-row:hover .mat-cell {
+    border-color: currentColor;
+  }
+  
+  .demo-row-is-clicked {
+    font-weight: bold;
+  }
+  .header {
+    font-weight: bold;
+    text-decoration: underline;
+    font-family: 'Times New Roman', Times, serif;
+}

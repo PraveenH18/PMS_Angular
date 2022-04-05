@@ -1,0 +1,25 @@
+form {
+    width: auto;
+    height: auto;
+    border: 1px solid rgba(27, 194, 194, 0.904);
+}
+
+.border {
+    width: 900px;
+    border: 1px solid black;
+}
+
+.header {
+    font-weight: bold;
+    text-decoration: underline;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: larger;
+}
+
+.mat-raised-button {
+    background-color: rgba(27, 194, 194, 0.904);
+}
+
+mat-label {
+    color: black;
+}

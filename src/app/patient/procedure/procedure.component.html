@@ -1,0 +1,34 @@
+<div class="mainDiv pb-5 pt-3">
+    <div class="mt-4">
+        <table class="mx-auto table">
+            <thead>
+                <tr>
+                    <th  scope="col">
+                        Procedure Code
+                    </th>
+                    <th  scope="col">
+                        Procedure Description
+                    </th>
+                    <th  scope="col" *ngIf="!isSubmitted">
+
+                    </th>
+                </tr>
+            </thead>
+            <tr *ngFor="let d of selectedProcedure">
+                <td  scope="row" >{{d.procedureCode}}</td>
+                <td>{{d.procedureDescription}}</td>
+                <td *ngIf="!isSubmitted">
+                    <a href="javascript:void(0)" (click)="delete_clcik(d.procedureCode)">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                </td>
+            </tr>
+            <tr *ngIf="selectedProcedure.length==0" class="text-danger">
+                <td colspan="2" class="text-center">
+                    No Procedures Added
+                    </td>
+            </tr>
+        </table>
+    </div>
+    
+</div>

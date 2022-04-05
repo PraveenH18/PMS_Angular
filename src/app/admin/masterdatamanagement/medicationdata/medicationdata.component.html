@@ -1,0 +1,57 @@
+<h1 class="header">Medication Data</h1>
+<div class=" example-container   ">
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input>
+      
+    </mat-form-field>&nbsp;
+    
+      <button mat-raised-button class="btn" (click)="openDialog()">Add</button>
+      
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 col-11">
+
+    <ng-container matColumnDef="drugCode">
+      <th mat-header-cell *matHeaderCellDef> <strong>Drug Code</strong> </th>
+      <td mat-cell *matCellDef="let element"> {{element.drugCode}} </td>
+      <td mat-cell *matCellDef="let element">  </td>
+    </ng-container>
+
+    <ng-container matColumnDef="drugName">
+      <th mat-header-cell *matHeaderCellDef> <strong>Drug Name</strong> </th>
+      <td mat-cell *matCellDef="let element"> {{element.drugName}} </td>
+      <td mat-cell *matCellDef="let element">  </td>
+    </ng-container>
+
+    <ng-container matColumnDef="drugForm">
+      <th mat-header-cell *matHeaderCellDef> <strong>Drug Form</strong> </th>
+      <td mat-cell *matCellDef="let element"> {{element.drugForm}} </td>
+      <td mat-cell *matCellDef="let element">  </td>
+    </ng-container>
+
+     <ng-container matColumnDef="drugStrength">
+      <th mat-header-cell *matHeaderCellDef> <strong>Drug Strength</strong> </th>
+      <td mat-cell *matCellDef="let element"> {{element.drugStrength}} </td>
+      <td mat-cell *matCellDef="let element">  </td>
+    </ng-container>      
+
+    <ng-container matColumnDef="action">
+
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+  
+        <strong>ACTION</strong>       
+  
+      </th>
+  
+      <td mat-cell *matCellDef="let row">
+  
+        <button mat-icon-button (click)="editMedication(row)"><mat-icon>mode_edit</mat-icon></button>
+  
+      </td>
+  
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+  </table>
+  <mat-paginator #paginator [pageSize]="7" [pageSizeOptions]="[2, 7, 14, 21, 28]">
+  </mat-paginator>
+

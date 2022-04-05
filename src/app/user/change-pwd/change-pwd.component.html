@@ -1,0 +1,46 @@
+<div class="text-center mainDiv col-sm-5  mx-auto mt-4">
+    <form [formGroup]="changePwdForm">
+        <h2>Change Password</h2>
+        <span *ngIf="message" class="error">{{message}}</span>
+        <mat-form-field>
+            <mat-label>Old Password</mat-label>
+            <input matInput type="password" [formControl]="oldPwd">
+            
+            <mat-error *ngIf="oldPwd.hasError('required')">
+                This field cannot be empty
+            </mat-error>
+            <mat-error *ngIf="oldPwd.hasError('maxlength') || oldPwd.hasError('minlength')">
+               Please enter a valid input
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>New Password</mat-label>
+            <input matInput type="password" [formControl]="newPwd">
+            
+            <mat-error *ngIf="newPwd.hasError('required')">
+                This field cannot be empty
+            </mat-error>
+            <mat-error *ngIf="newPwd.hasError('pattern')">
+                Password should be have atleast one uppercase,lowercase and digit.
+                Length between 8-20
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" [formControl]="conPwd">
+            
+            <mat-error *ngIf="conPwd.hasError('required')">
+                This field cannot be empty
+            </mat-error>
+            <mat-error *ngIf="!conPwd.hasError('required')&&conPwd.hasError('confirmPwd')">
+                New Password and Confirm Password does not match
+            </mat-error>
+        </mat-form-field>
+        
+        <section class="my-3 text-center">
+            <button mat-raised-button class='btn'  (click)="submit_click()">Submit</button>
+            <button *ngIf="showCancelButton" mat-raised-button class='btn' (click)="close_click()">Close</button>
+        </section>
+    </form>
+</div>

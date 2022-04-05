@@ -1,0 +1,60 @@
+<div class="mainDiv">
+    <form [formGroup]="vitalForm">
+        <div class="row">
+            <mat-form-field class="col-sm-4 offset-sm-2 mr-sm-2">
+                <mat-label>Height</mat-label>
+                <input [formControl]="height" type="number" placeholder="Enter Height (in cm)" matInput>
+                <mat-error *ngIf="height.hasError('required')">
+                    Please provide Patient height in cms
+                </mat-error>
+                <mat-error *ngIf="height.hasError('max') || height.hasError('pattern')">
+                    Please check Patient height and provide the data in cms
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-sm-4 mr-sm-2">
+                <mat-label>Weight</mat-label>
+                <input [formControl]="weight" type="text" placeholder="Enter Weight (in kg)" matInput>
+                <mat-error *ngIf="weight.hasError('required')">
+                    Please provide Patient’s Weight in Kgs
+                </mat-error>
+                <mat-error *ngIf="weight.hasError('pattern')">
+                    Please provide Patient’s Weight upto to one digit only
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field class="col-sm-4 offset-sm-2 mr-sm-2">
+                <mat-label>Blood Pressue</mat-label>
+                <input [formControl]="bp" type="text" placeholder="Enter Blood Pressue in mm Hg" matInput>
+                <mat-error *ngIf="bp.hasError('required') || bp.hasError('pattern')">
+                    Please provide Patient’s Blood Pressure (systolic / diastolic)
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-sm-4 mr-sm-2">
+                <mat-label>Body Temperature</mat-label>
+                <input [formControl]="temp" type="text" placeholder="Enter Body Temperature (in Fahrenheit)" matInput>
+                <mat-error *ngIf="temp.hasError('required') || temp.hasError('pattern')">
+                    Please provide Patient Body Temperature in Fahrenheit
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field class="col-sm-4 offset-sm-2 mr-sm-2">
+                <mat-label>Respiration Rate</mat-label>
+                <input [formControl]="respRate" type="number" placeholder="Enter Respiration Rate" matInput>
+                <mat-error *ngIf="respRate.hasError('required')">
+                    Please provide Patient’s Respiration Rate
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <br><br>
+        <div>
+            <div class="text-center" *ngIf="status!='closed'">
+                <button *ngIf="!isSubmitted"  mat-raised-button class='btn' (click)="submit_click()">Save</button>
+                <button *ngIf="isSubmitted"  mat-raised-button class='btn' (click)="edit_click()">Edit</button>
+            </div>
+
+        </div>
+    </form>
+</div>

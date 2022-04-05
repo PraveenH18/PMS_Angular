@@ -1,0 +1,62 @@
+<h2 class="mb-1 header">All Patient Details</h2>
+<mat-form-field class="col-11" appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search" #input>
+  </mat-form-field>
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 col-11">
+    <ng-container matColumnDef="patientId">
+      <th mat-header-cell *matHeaderCellDef>Patient Id</th>
+      <td mat-cell *matCellDef="let element"> 
+          {{element.patientId}}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="patientName">
+      <th mat-header-cell *matHeaderCellDef>Patient Name
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.patientName| titlecase}}</td>
+    </ng-container>
+    }
+  
+     <ng-container matColumnDef="contactNo">
+      <th mat-header-cell *matHeaderCellDef>Contact Number</th>
+      <td mat-cell *matCellDef="let element"> 
+          {{element.contactNo}}
+        </td>
+    </ng-container>
+      
+    <ng-container matColumnDef="age">
+      <th mat-header-cell *matHeaderCellDef>Age</th>
+      <td mat-cell *matCellDef="let element"> 
+        {{element.age}}
+        </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef>Gender</th>
+      <td mat-cell *matCellDef="let element"> {{element.gender|titlecase}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> 
+        ACTION      
+      </th>
+      <td mat-cell *matCellDef="let element"> 
+        <a
+        [routerLink]="['/hospitaluser/patient-details/',element.patientId]"><mat-icon>visibility</mat-icon></a>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+  </table>
+  <br>
+  <div class="col-11">
+    <mat-paginator #paginator [pageSize]="7" [pageSizeOptions]="[7, 14, 21]">
+    </mat-paginator>
+  </div>
+  
+  
+  
